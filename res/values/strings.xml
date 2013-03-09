@@ -6,8 +6,8 @@
 	<string name="animation_text_1">Stay Hungry. Stay Foolish.</string>
 	<string name="animation_text_2">— Steve Jobs</string>
 	
-	<string name="auto_synch">Automatic Synch</string>
-	<string name="local_only">Local Only</string>
+	<string name="online">Online</string>
+	<string name="offline">Offline</string>
 
 	<string name="menu_settings">Settings</string>
 

@@ -34,12 +34,12 @@ public final class R {
         public static final int animation_text_2=0x7f050003;
         public static final int app_name=0x7f050000;
         public static final int app_short_name=0x7f050001;
-        public static final int auto_synch=0x7f050004;
         public static final int catalog=0x7f050007;
         public static final int catalog_by_popularity=0x7f05000a;
         public static final int catalog_by_price=0x7f050009;
         public static final int catalog_by_title=0x7f050008;
-        public static final int local_only=0x7f050005;
         public static final int menu_settings=0x7f050006;
+        public static final int offline=0x7f050005;
+        public static final int online=0x7f050004;
     }
 }

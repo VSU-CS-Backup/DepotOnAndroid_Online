@@ -33,17 +33,18 @@
 	<RadioGroup android:id="@+id/mode"
 		android:layout_height="wrap_content" android:orientation="horizontal" 
 		android:layout_width="fill_parent"
+		android:gravity="center"
 		android:layout_alignParentBottom="true" >
 
 		<RadioButton android:id="@+id/synch"
 			android:checked="false"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="@string/auto_synch" />
+			android:text="@string/online" />
 
 		<RadioButton android:id="@+id/local"
 			android:checked="true"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:text="@string/local_only" />
+			android:text="@string/offline" />
 	</RadioGroup>
 
 </RelativeLayout>

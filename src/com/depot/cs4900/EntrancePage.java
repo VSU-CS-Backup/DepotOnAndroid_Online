@@ -98,7 +98,7 @@ public class EntrancePage extends Activity {
 
 			public void onClick(View v) {
 				Log.v(Constants.LOGTAG + ": " + EntrancePage.CLASSTAG, " AUTO SYNCH !!!");
-				myprefs.setMode(Constants.AUTO_SYNCH);
+				myprefs.setMode(Constants.ONLINE);
 				myprefs.save();
 			}
 		});
@@ -133,7 +133,7 @@ public class EntrancePage extends Activity {
 
 		menu.clear();
 
-		if(myprefs.getMode() == Constants.AUTO_SYNCH) {
+		if(myprefs.getMode() == Constants.ONLINE) {
 			Log.v(Constants.LOGTAG + ": " + EntrancePage.CLASSTAG, " AUTO SYNCH !!!");
 			
 			menu.add(0, EntrancePage.MENU_SETTINGS, 0, R.string.menu_settings)
