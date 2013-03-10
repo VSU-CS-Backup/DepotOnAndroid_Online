@@ -54,9 +54,9 @@ public class EntrancePage extends Activity {
 
 			public void onClick(View v) {
 				try {					
-					// Intent intent = new Intent(
-					// 		Constants.INTENT_ACTION_CATALOG_LIST);
-					// startActivity(intent);
+					 Intent intent = new Intent(
+					 		Constants.INTENT_ACTION_CATALOG_LIST);
+					 startActivity(intent);
 
 				} catch (Exception e) {
 					Log.i(Constants.LOGTAG + ": " + EntrancePage.CLASSTAG, "Failed to load the catalog"

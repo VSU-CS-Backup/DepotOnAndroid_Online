@@ -50,8 +50,9 @@ public class CatalogByPopularity extends ListActivity {
         super.onResume();
         Log.v(Constants.LOGTAG, " " + CatalogByPopularity.CLASSTAG + " onResume");
 
-        // Parse the data from catalog.xml file
-        catalog = CatalogList.parse(this).getAllCatalogEntries();
+        CatalogFetcher cf = new CatalogFetcher();
+        // Parse the data from catalog.json file
+        catalog = cf.getCatalogFromFile("/data/data/com.depot.cs4900/files/products.json");
 		catalogAdapter = new CatalogAdapter(CatalogByPopularity.this, catalog, 2); //2: Sort by popularity
 		setListAdapter(catalogAdapter);
     }    

@@ -50,8 +50,9 @@ public class CatalogByTitle extends ListActivity {
         super.onResume();
         Log.v(Constants.LOGTAG, " " + CatalogByTitle.CLASSTAG + " onResume");
 
-        // Parse the data from catalog.xml file
-        catalog = CatalogList.parse(this).getAllCatalogEntries();
+        CatalogFetcher cf = new CatalogFetcher();
+        // Parse the data from catalog.json file
+        catalog = cf.getCatalogFromFile("/data/data/com.depot.cs4900/files/products.json");
 		catalogAdapter = new CatalogAdapter(CatalogByTitle.this, catalog, 0); //0: Sort by title
 		setListAdapter(catalogAdapter);
     }    

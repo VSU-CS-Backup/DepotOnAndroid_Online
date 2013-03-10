@@ -60,7 +60,7 @@ public class CatalogEntry {
     public String toString() {
         return this._title + ",\t$" + this._price;
     }
-
+/*
     public String toXMLString() {
         StringBuilder sb = new StringBuilder("");
         sb.append("<product>");
@@ -94,4 +94,5 @@ public class CatalogEntry {
 
         return ce;
     }
+*/
 }
