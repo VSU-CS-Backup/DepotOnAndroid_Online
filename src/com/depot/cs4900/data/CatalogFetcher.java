@@ -39,7 +39,7 @@ public class CatalogFetcher {
 				String description = product.getString("description");
 				String price = product.getString("price");
 				//JSONObject popularity = product.getJSONObject("popularity");
-				String popularity = "0";
+				String popularity = product.getString("popularity");
 				
 				CatalogEntry ce = new CatalogEntry();
 				ce.set_product_id(new Integer(id).toString());
