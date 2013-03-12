@@ -52,7 +52,7 @@ public class CatalogByPrice extends ListActivity {
 
         CatalogFetcher cf = new CatalogFetcher();
         // Parse the data from catalog.json file
-        catalog = cf.getCatalogFromFile("/data/data/com.depot.cs4900/files/products.json");
+        catalog = cf.getCatalogFromFile(Constants.CATALOG_JSON_FILE_NAME);
 		catalogAdapter = new CatalogAdapter(CatalogByPrice.this, catalog, 1); //1: Sort by price
 		setListAdapter(catalogAdapter);
     }    
@@ -88,14 +88,9 @@ public class CatalogByPrice extends ListActivity {
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-//        // set the current review to the Application (global state placed there)
-//        RestaurantFinderApplication application = (RestaurantFinderApplication) getApplication();
-//        application.setCurrentReview(this.reviews.get(position));
-//
-//        // startFrom page is not stored in application, for example purposes it's a simple "extra"
-//        Intent intent = new Intent(Constants.INTENT_ACTION_VIEW_DETAIL);
-//        intent.putExtra(Constants.STARTFROM_EXTRA, getIntent().getIntExtra(Constants.STARTFROM_EXTRA, 1));
-//        startActivity(intent);
+    	Intent intent = new Intent(Constants.INTENT_ACTION_PRODUCT_DETAIL);
+        intent.putExtras(catalog.get((int)id).toBundle());
+        startActivity(intent);
     }    
 
 }

@@ -12,8 +12,21 @@
 	<string name="menu_settings">Settings</string>
 
 	<string name="catalog">Catalog</string>
+	<string name="product">Product</string>
+	<string name="new_product">New Product</string>
 	
 	<string name="catalog_by_title">Catalog By Title</string>
 	<string name="catalog_by_price">Catalog By Price</string>
 	<string name="catalog_by_popularity">Catalog By Popularity</string>
+	
+	<string name="product_title_label">Title</string>
+	<string name="product_description_label">Description</string>
+	<string name="product_price_label">Price</string>
+	<string name="product_update_button_label">Update</string>
+	<string name="product_cancel_button_label">Cancel</string>
+	<string name="product_new_button_label">New</string>
+	
+	<string name="menu_product_delete">Delete</string>
+    <string name="menu_product_create">New Product</string>
+	
 </resources>

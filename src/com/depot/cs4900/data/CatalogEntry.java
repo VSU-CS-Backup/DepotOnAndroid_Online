@@ -72,7 +72,7 @@ public class CatalogEntry {
         sb.append("</product>");
         return sb.toString() + "\n";
     }
-
+*/
     public Bundle toBundle() {
         Bundle b = new Bundle();
         b.putString("product_id", this._product_id);
@@ -94,5 +94,5 @@ public class CatalogEntry {
 
         return ce;
     }
-*/
+
 }
