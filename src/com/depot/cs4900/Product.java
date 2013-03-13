@@ -130,15 +130,6 @@ public class Product extends Activity {
 		product.set_title(title_text.getText().toString());
 		product.set_description(desciption_text.getText().toString());
 		product.set_price(price_text.getText().toString());
-		
-        CatalogFetcher cf = new CatalogFetcher();
-        // Parse the data from catalog.json file
-        // cf.getCatalogFromFile(Constants.CATALOG_JSON_FILE_NAME);
-        cf.replace(Constants.CATALOG_JSON_FILE_NAME, product);
-
-
-//		catalog = CatalogList.parse(Product.this);
-//		catalog.replace(product);
 
 		// update product on the server in a separate thread for
 		// ProgressDialog/Handler
@@ -146,7 +137,9 @@ public class Product extends Activity {
 		new Thread() {
 			@Override
 			public void run() {
-				// networking stuff ...
+				// Update the product in the JSON file
+				CatalogFetcher cf = new CatalogFetcher();
+		        cf.replace(Constants.CATALOG_JSON_FILE_NAME, product);
 				handler.sendEmptyMessage(0);
 			}
 		}.start();
@@ -156,15 +149,8 @@ public class Product extends Activity {
 
 		Log.v(Constants.LOGTAG, " " + Product.CLASSTAG + " deleteProduct");
 
-		// Get ready to send the HTTP DELETE request to update the Product data on
-		// the server
-		// ...
-
 		this.progressDialog = ProgressDialog.show(this, " Working...",
 				" Deleting Product", true, false);
-        
-//		catalog = CatalogList.parse(Product.this);
-//		catalog.delete(product);
 
 		// delete product on the server in a separate thread for
 		// ProgressDialog/Handler
@@ -172,7 +158,9 @@ public class Product extends Activity {
 		new Thread() {
 			@Override
 			public void run() {
-				// networking stuff ...
+				// Delete the product from JSON file
+				CatalogFetcher cf = new CatalogFetcher();
+		        cf.delete(Constants.CATALOG_JSON_FILE_NAME, product);
 				handler.sendEmptyMessage(0);
 			}
 		}.start();

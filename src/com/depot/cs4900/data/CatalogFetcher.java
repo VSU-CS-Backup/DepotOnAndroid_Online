@@ -177,4 +177,50 @@ public class CatalogFetcher {
 		Log.v(Constants.LOGTAG, " " + CatalogFetcher.CLASSTAG
 				+ " send request and parse reviews duration - " + duration);
 	}
+	public void delete(String fileName, CatalogEntry ce){
+		long startTime = System.currentTimeMillis();
+		// ArrayList<CatalogEntry> results = null;
+		BufferedReader reader  = null;
+
+		try {
+			// Read contents of the JSON file into a JSON string
+			reader = new BufferedReader( new FileReader (fileName));
+		    String         line = null;
+		    StringBuilder  stringBuilder = new StringBuilder();
+		    String         ls = System.getProperty("line.separator");
+
+		    while( ( line = reader.readLine() ) != null ) {
+		        stringBuilder.append( line );
+		        stringBuilder.append( ls );
+		    }
+
+		    JSONArray products = new JSONArray(stringBuilder.toString());
+		    JSONArray new_products = new JSONArray();
+		    for (int i = 0; i < products.length(); i++) {
+				JSONObject product = products.getJSONObject(i);
+				if (product.getInt("id") != Integer.parseInt(ce.get_product_id())){
+						new_products.put(product);
+				}
+		    }
+		    
+		    persist(new_products.toString());
+		    
+		} catch (Exception e) {
+			Log.e(Constants.LOGTAG, " " + CatalogFetcher.CLASSTAG, e);
+		}
+		finally
+		{
+			try
+			{
+				if ( reader != null)
+					reader.close( );
+			}
+			catch ( IOException e)
+			{
+			}
+	     }
+		long duration = System.currentTimeMillis() - startTime;
+		Log.v(Constants.LOGTAG, " " + CatalogFetcher.CLASSTAG
+				+ " send request and parse reviews duration - " + duration);
+	}
 }
