@@ -247,7 +247,6 @@ public class CatalogFetcher {
 			for (int i = 0; i < products.length(); i++) {
 				JSONObject product = products.getJSONObject(i);
 				if (product.getInt("id") > max_id)
-				// if (Integer.parseInt(product.getString("id")) > max_id)
 					max_id = product.getInt("id");
 			}
 			//ce.set_product_id(new Integer(max_id + 1).toString());
