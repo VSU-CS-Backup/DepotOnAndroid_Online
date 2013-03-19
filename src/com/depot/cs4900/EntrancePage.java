@@ -156,8 +156,8 @@ public class EntrancePage extends Activity {
 		case MENU_SETTINGS:
 			try {
 				// Perform action on click
-//				startActivityForResult(new Intent(this, ShowSettings.class),
-//						EntrancePage.this.ACTIVITY_SETTINGS);
+				startActivityForResult(new Intent(this, ShowSettings.class),
+						EntrancePage.this.ACTIVITY_SETTINGS);
 			} catch (Exception e) {
 				Log.i(Constants.LOGTAG + ": " + EntrancePage.CLASSTAG,
 						"Failed to Launch Settings [" + e.getMessage() + "]");

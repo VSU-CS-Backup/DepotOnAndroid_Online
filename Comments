@@ -1,0 +1,14 @@
+Now, users can login/logout successfully. Also, only those books that are belonging to the user who is currently logged in are displayed.
+
+Pre-created users on depot server (For_DepotOnAndroid_Online) are admin, dave, john, and mary
+
+Files Changed:
+1. AndroidManifest.xml -- added the new activity of "ShowSettings"
+2. EntrancePage.java -- the "Settings" menu item is now directing you to the "ShowSettings" screen
+3. Catalog.java -- an HTTP GET is sent on separate thread to the Depot server requesting ".../products.json". The server responds with those books that belong to the current user. (All books will be displayed for adminr. Also, the three tabs on the screen are created in the response handler (instead of in onCreate as before) upon receipt of a successful response.
+4. ...data/CatalogFetcher.java -- if the json response sent back from the server does not contain "popularity", set that attribute to "0".
+
+Files Added:
+1. showSettings.xml
+2. showSettings.java -- An HTTP POST is sent to the Depot server for user login. An HTTP DELETE is sent to the server for user logout. Preferences are used to convey setting infor. including url, user name, user password, valid or not (legal user or not), in addition to mode that indicates if the client is operating off-line or on-line.
+

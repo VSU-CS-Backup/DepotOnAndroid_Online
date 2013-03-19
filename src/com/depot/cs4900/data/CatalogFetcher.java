@@ -38,7 +38,7 @@ public class CatalogFetcher {
 	private ArrayList<CatalogEntry> parseCatalog(String resp) {
 		try {
 			JSONArray products = new JSONArray(resp);
-
+			
 			for (int i = 0; i < products.length(); i++) {
 				JSONObject product = products.getJSONObject(i);
 				int id = product.getInt("id");
@@ -46,8 +46,13 @@ public class CatalogFetcher {
 				String description = product.getString("description");
 				String price = product.getString("price");
 				//JSONObject popularity = product.getJSONObject("popularity");
-				String popularity = product.getString("popularity");
-				
+				String popularity;
+				try{
+					popularity = product.getString("popularity");
+				}
+				catch(Exception e){
+					popularity = "0";
+				}
 				CatalogEntry ce = new CatalogEntry();
 				ce.set_product_id(new Integer(id).toString());
 				ce.set_title(title);
