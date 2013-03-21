@@ -26,4 +26,11 @@ Files Changed:
 **** C(reate) through HTTP POST ****
 **********************************************************************************
 Files Changed:
-3. NewProduct.java -- NewProduct.java has been modified. After the new product is created with a faked -1 id and put in the local JSON file, it is sent to the server as an HTTP POST message. Once the server is done with its business, it sends response back. In particular, such response carries the real id of the new product. The entry of the new product in the local JSON file is updated accordingly then. 
+1. NewProduct.java -- NewProduct.java has been modified. After the new product is created with a faked -1 id and put in the local JSON file, it is sent to the server as an HTTP POST message. Once the server is done with its business, it sends response back. In particular, such response carries the real id of the new product. The entry of the new product in the local JSON file is updated accordingly then. 
+2. .../CatalogFetcher.java -- in create(), a search for the largest id in the local JSON file is not needed anymore. The real id is created by the server.
+
+**********************************************************************************
+**** D(elete) through HTTP DELETE ****
+**********************************************************************************
+Files Changed:
+3. Product.java -- An HTTP DELETE massage is sent to the server in addition to delete the product from the local JSON file.
