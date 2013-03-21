@@ -180,6 +180,10 @@ public class Product extends Activity {
 		this.progressDialog = ProgressDialog.show(this, " Working...",
 				" Deleting Product", true, false);
 
+		
+		final ResponseHandler<String> responseHandler = HTTPRequestHelper
+				.getResponseHandlerInstance(this.handler);
+		
 		// delete product on the server in a separate thread for
 		// ProgressDialog/Handler
 		// when complete send "empty" message to handler
@@ -189,6 +193,19 @@ public class Product extends Activity {
 				// Delete the product from JSON file
 				CatalogFetcher cf = new CatalogFetcher();
 				cf.delete(Constants.CATALOG_JSON_FILE_NAME, product);
+				
+				if (myprefs.getMode() == Constants.ONLINE
+						&& myprefs.isValid()
+						&& !myprefs.getUserName().equals("admin")) {
+					HTTPRequestHelper helper = new HTTPRequestHelper(
+							responseHandler);
+					helper.performDelete(
+							HTTPRequestHelper.MIME_TEXT_PLAIN,
+							myprefs.getServer() + "/products/"
+									+ product.get_product_id() + ".json", null,
+							null, null, null);
+				}
+				
 				handler.sendEmptyMessage(0);
 			}
 		}.start();
