@@ -1,3 +1,6 @@
+**********************************************************************************
+**** Login, logout, and R(ead) through HTTP POST, DELTE, and GET respectively ****
+**********************************************************************************
 Now, users can login/logout successfully. Also, only those books that are belonging to the user who is currently logged in are displayed.
 
 Pre-created users on depot server (For_DepotOnAndroid_Online) are admin, dave, john, and mary
@@ -12,3 +15,8 @@ Files Added:
 1. showSettings.xml
 2. showSettings.java -- An HTTP POST is sent to the Depot server for user login. An HTTP DELETE is sent to the server for user logout. Preferences are used to convey setting infor. including url, user name, user password, valid or not (legal user or not), in addition to mode that indicates if the client is operating off-line or on-line.
 
+**********************************************************************************
+**** U(pdate) through HTTP PUT ****
+**********************************************************************************
+Files Changed:
+3. Product.java -- Upon a click on the update button on the "Product" screen, updateProduct() method is called so as to first update the local JSON file thanks to the replace() method in CatelogFetcher, then send an HTTP PUT message carrying all the new attributes in the forms of "params" to the server.  
