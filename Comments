@@ -19,4 +19,11 @@ Files Added:
 **** U(pdate) through HTTP PUT ****
 **********************************************************************************
 Files Changed:
-3. Product.java -- Upon a click on the update button on the "Product" screen, updateProduct() method is called so as to first update the local JSON file thanks to the replace() method in CatelogFetcher, then send an HTTP PUT message carrying all the new attributes in the forms of "params" to the server.  
+1. Product.java -- Upon a click on the update button on the "Product" screen, updateProduct() method is called so as to first update the local JSON file thanks to the replace() method in CatelogFetcher, then send an HTTP PUT message carrying all the new attributes in the forms of "params" to the server.  
+
+
+**********************************************************************************
+**** C(reate) through HTTP POST ****
+**********************************************************************************
+Files Changed:
+3. NewProduct.java -- NewProduct.java has been modified. After the new product is created with a faked -1 id and put in the local JSON file, it is sent to the server as an HTTP POST message. Once the server is done with its business, it sends response back. In particular, such response carries the real id of the new product. The entry of the new product in the local JSON file is updated accordingly then. 
