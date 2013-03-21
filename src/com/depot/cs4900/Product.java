@@ -1,6 +1,7 @@
 package com.depot.cs4900;
 
 import java.util.List;
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -19,6 +20,8 @@ import android.widget.ViewFlipper;
 import android.widget.EditText;
 
 import com.depot.cs4900.data.*;
+import com.depot.cs4900.network.*;
+import org.apache.http.client.ResponseHandler;
 
 public class Product extends Activity {
 	private static final String CLASSTAG = Product.class.getSimpleName();
@@ -40,10 +43,8 @@ public class Product extends Activity {
 	private final Handler handler = new Handler() {
 		@Override
 		public void handleMessage(final Message msg) {
-			Log.v(Constants.LOGTAG,
-							" "
-							+ Product.CLASSTAG
-							+ " update/delete worker thread done.");
+			Log.v(Constants.LOGTAG, " " + Product.CLASSTAG
+					+ " update/delete worker thread done.");
 			progressDialog.dismiss();
 
 			finish();
@@ -122,7 +123,21 @@ public class Product extends Activity {
 
 		// Get ready to send the HTTP PUT request to update the Product data on
 		// the server
-		// ...
+
+		// Get ready to send the HTTP PUT request to update the Product data on
+		// the server
+		final ResponseHandler<String> responseHandler = HTTPRequestHelper
+				.getResponseHandlerInstance(this.handler);
+		final HashMap<String, String> params = new HashMap<String, String>();
+		if (!title_text.getText().toString().equals("")) {
+			params.put("title", title_text.getText().toString());
+		}
+		if (!desciption_text.getText().toString().equals("")) {
+			params.put("description", desciption_text.getText().toString());
+		}
+		if (!price_text.getText().toString().equals("")) {
+			params.put("price", price_text.getText().toString());
+		}
 
 		this.progressDialog = ProgressDialog.show(this, " Working...",
 				" Updating Product", true, false);
@@ -139,12 +154,25 @@ public class Product extends Activity {
 			public void run() {
 				// Update the product in the JSON file
 				CatalogFetcher cf = new CatalogFetcher();
-		        cf.replace(Constants.CATALOG_JSON_FILE_NAME, product);
+				cf.replace(Constants.CATALOG_JSON_FILE_NAME, product);
+				
+				// Update the product on the server
+				if (myprefs.getMode() == Constants.ONLINE
+						&& myprefs.isValid()) {
+					HTTPRequestHelper helper = new HTTPRequestHelper(
+							responseHandler);
+					helper.performPut(
+							HTTPRequestHelper.MIME_TEXT_PLAIN,
+							myprefs.getServer() + "/products/"
+									+ product.get_product_id() + ".json", null,
+							null, null, params);
+				}
+				
 				handler.sendEmptyMessage(0);
 			}
 		}.start();
 	}
-	
+
 	private void deleteProdut() {
 
 		Log.v(Constants.LOGTAG, " " + Product.CLASSTAG + " deleteProduct");
@@ -160,10 +188,10 @@ public class Product extends Activity {
 			public void run() {
 				// Delete the product from JSON file
 				CatalogFetcher cf = new CatalogFetcher();
-		        cf.delete(Constants.CATALOG_JSON_FILE_NAME, product);
+				cf.delete(Constants.CATALOG_JSON_FILE_NAME, product);
 				handler.sendEmptyMessage(0);
 			}
 		}.start();
 	}
-	
+
 }
