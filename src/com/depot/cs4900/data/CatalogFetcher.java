@@ -248,15 +248,15 @@ public class CatalogFetcher {
 		    }
 
 		    JSONArray products = new JSONArray(stringBuilder.toString());
-			int max_id = 0;
-			for (int i = 0; i < products.length(); i++) {
-				JSONObject product = products.getJSONObject(i);
-				if (product.getInt("id") > max_id)
-					max_id = product.getInt("id");
-			}
+//			int max_id = 0;
+//			for (int i = 0; i < products.length(); i++) {
+//				JSONObject product = products.getJSONObject(i);
+//				if (product.getInt("id") > max_id)
+//					max_id = product.getInt("id");
+//			}
 			//ce.set_product_id(new Integer(max_id + 1).toString());
 			JSONObject obj = new JSONObject();
-			obj.put("id", max_id+1);
+			obj.put("id", ce.get_product_id());
 			obj.put("title", ce.get_title());
 			obj.put("description", ce.get_description());
 			obj.put("price", ce.get_price());
